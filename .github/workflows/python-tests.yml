@@ -19,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'  # Specify Python version
+        python-version: '3.9'
 
     - name: Install dependencies
       run: |
@@ -29,3 +29,13 @@ jobs:
     - name: Run unit tests
       run: |
         python -m unittest discover tests
+
+    - name: Send notification on failure
+      if: failure()  # This step runs only if the workflow fails
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            body: "🚨 Tests failed! Please check the workflow logs for details."
+          })
