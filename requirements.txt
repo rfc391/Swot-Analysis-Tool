@@ -1,6 +1,5 @@
 #### **c. Requirements File (`requirements.txt`)**
 
-```plaintext
 matplotlib
 plotly
 reportlab
