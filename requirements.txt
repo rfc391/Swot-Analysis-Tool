@@ -1,5 +1,4 @@
 #### **c. Requirements File (`requirements.txt`)**
-
 matplotlib
 plotly
 reportlab
