@@ -15,7 +15,7 @@ A GUI-based SWOT analysis tool for creating, managing, filtering, and visualizin
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/swot-analysis-tool.git
+   git clone https://github.com/rfc391/swot-analysis-tool.git
    cd swot-analysis-tool
 
 2. Install dependencies:
