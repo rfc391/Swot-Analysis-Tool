@@ -1,5 +1,4 @@
 #### **c. Requirements File (`requirements.txt`)**
-This file lists all the Python dependencies required for the project:
 
 ```plaintext
 matplotlib
