@@ -1,60 +1,77 @@
+# SWOT Analysis Tool
 
-# Swot Analysis Tool
+This project provides a comprehensive SWOT (Strengths, Weaknesses, Opportunities, and Threats) analysis tool, designed to streamline strategic planning. Leveraging AI, it generates suggestions tailored to user inputs, helping businesses and individuals identify key SWOT elements effectively.
 
-This repository contains a powerful and user-friendly tool for conducting SWOT analysis (Strengths, Weaknesses, Opportunities, Threats). Designed for businesses, students, and analysts, this tool provides an efficient way to organize and visualize key aspects of strategic planning.
+## Sections
 
-## Features
+1. **Introduction**: Explain the purpose of the project.
+2. **Installation**: Provide installation instructions.
+3. **Usage**: Demonstrate how to use the project.
+4. **Contributing**: Describe how others can contribute.
 
-- **Interactive Analysis**: Create, edit, and manage SWOT categories effortlessly.
-- **Visualization**: Present your analysis using clear and professional charts or reports.
-- **Collaboration Ready**: Share SWOT analysis results with teammates or stakeholders.
-- **Customizable**: Tailor the tool to meet your specific needs.
-- **Open Source**: Fully open-source under the [appropriate license](LICENSE).
+## Introduction
+
+The SWOT Analysis Tool simplifies the process of identifying strategic factors for any project or business. With integrated AI, users can generate Strengths, Weaknesses, Opportunities, and Threats automatically based on contextual input.
 
 ## Installation
 
-### Prerequisites
-- Python 3.8 or higher
-- Dependencies listed in the `requirements.txt` file
+1. Clone this repository:
+   ```bash
+   git clone <repository-url>
+   cd SWOT_Project
+   ```
 
-### Steps
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/rfc391/Swot-Analysis-Tool.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd Swot-Analysis-Tool
-    ```
-3. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-4. Run the application:
-    ```bash
-    python main.py
-    ```
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Ensure MongoDB is installed and running on your system.
+
+4. Start the RESTful API server:
+   ```bash
+   python api.py
+   ```
 
 ## Usage
 
-1. Launch the application.
-2. Input data for each category: Strengths, Weaknesses, Opportunities, and Threats.
-3. Generate a report or visualization for your SWOT analysis.
-4. Export or share the results as needed.
+### Desktop Application
+Run the Tkinter-based GUI for local use:
+```bash
+python desktop_gui.py
+```
+
+### Web Application
+Launch the web-based application in your browser:
+```bash
+python web_app.py
+```
+
+### RESTful API
+Use the API for CRUD operations and AI-based suggestions:
+```bash
+curl -X POST http://localhost:5000/api/swot/suggest -H "Content-Type: application/json" -d '{"category": "opportunity", "description": "expanding into new markets"}'
+```
+
+### AI Features
+
+Generate SWOT suggestions programmatically:
+```python
+from swot_ai_helper import SWOTAIHelper
+
+ai_helper = SWOTAIHelper()
+suggestions = ai_helper.suggest_swot("opportunity", "expanding into emerging markets")
+print(suggestions)
+```
 
 ## Contributing
 
-Contributions are welcome! If you'd like to help improve this tool, follow these steps:
-1. Fork this repository.
-2. Create a new branch (`git checkout -b feature/YourFeature`).
-3. Commit your changes (`git commit -m "Add YourFeature"`).
-4. Push to the branch (`git push origin feature/YourFeature`).
-5. Create a pull request.
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a branch for your feature or bug fix.
+3. Submit a pull request with a clear description of your changes.
 
 ## License
 
-This project is licensed under the terms of the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For questions, suggestions, or support, please contact the repository owner or create an issue.
+This project is licensed under the MIT License.
