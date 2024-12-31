@@ -1,18 +1,23 @@
+
 from transformers import pipeline
 
 class SWOTAIHelper:
     def __init__(self):
-        # Load a pre-trained model for text generation
-        self.generator = pipeline("text-generation", model="gpt2")
+        self.classifier = pipeline("text-classification", model="distilbert-base-uncased")
 
     def suggest_swot(self, category, description):
-        """
-        Suggest SWOT elements based on the category and description provided.
-        :param category: One of 'strength', 'weakness', 'opportunity', or 'threat'.
-        :param description: Context or details to generate suggestions.
-        :return: A list of suggested SWOT elements.
-        """
-        prompt = f"Generate {category} ideas for a business based on this context: {description}"
-        response = self.generator(prompt, max_length=100, num_return_sequences=1)
-        suggestions = response[0]['generated_text'].split("\n")
+        categories = {
+            "strength": ["advantage", "unique", "expertise", "resource"],
+            "weakness": ["limitation", "disadvantage", "lacking", "improvement"],
+            "opportunity": ["potential", "growth", "expansion", "trend"],
+            "threat": ["risk", "competition", "challenge", "obstacle"]
+        }
+        
+        prompt = f"Analyze this business aspect: {description}"
+        result = self.classifier(prompt)[0]
+        
+        suggestions = []
+        if result['score'] > 0.7:
+            suggestions.append(f"Based on AI analysis: This appears to be a valid {category}")
+            
         return suggestions

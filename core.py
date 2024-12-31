@@ -1,42 +1,28 @@
 
-import os
 import shutil
-import logging
-
-# Setup logging
-logging.basicConfig(
-    filename="logs/operations.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
+import os
 
 class FileHandler:
     @staticmethod
     def copy_file(src, dst):
         try:
-            shutil.copy(src, dst)
-            logging.info(f"Copied file from {src} to {dst}")
-            return f"File copied from {src} to {dst}."
+            shutil.copy2(src, dst)
+            return f"File successfully copied from {src} to {dst}"
         except Exception as e:
-            logging.error(f"Error copying file: {e}")
-            return f"Error: {e}"
+            return f"Error copying file: {str(e)}"
 
     @staticmethod
     def move_file(src, dst):
         try:
             shutil.move(src, dst)
-            logging.info(f"Moved file from {src} to {dst}")
-            return f"File moved from {src} to {dst}."
+            return f"File successfully moved from {src} to {dst}"
         except Exception as e:
-            logging.error(f"Error moving file: {e}")
-            return f"Error: {e}"
+            return f"Error moving file: {str(e)}"
 
     @staticmethod
     def delete_file(filepath):
         try:
             os.remove(filepath)
-            logging.info(f"Deleted file {filepath}")
-            return f"File {filepath} deleted."
+            return f"File {filepath} successfully deleted"
         except Exception as e:
-            logging.error(f"Error deleting file: {e}")
-            return f"Error: {e}"
+            return f"Error deleting file: {str(e)}"
