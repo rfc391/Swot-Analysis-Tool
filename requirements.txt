@@ -1,3 +1,14 @@
 flask
 pymongo
 requests
+bson
+flask-cors
+matplotlib
+plotly
+reportlab
+transformers
+bson
+matplotlib
+plotly
+reportlab
+transformers
