@@ -3,8 +3,10 @@ from pymongo import MongoClient
 from bson import ObjectId
 from swot_ai_helper import SWOTAIHelper
 import datetime
+from flask_cors import CORS # Added import for CORS
 
 app = Flask(__name__)
+CORS(app) # Enable CORS
 client = MongoClient("mongodb://0.0.0.0:27017/")
 db = client['swot_analysis_db']
 collection = db['swot_entries']
