@@ -12,3 +12,8 @@ matplotlib
 plotly
 reportlab
 transformers
+black
+coverage
+flake8
+isort
+pre-commit
