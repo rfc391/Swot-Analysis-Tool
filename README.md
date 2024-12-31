@@ -1,58 +1,56 @@
 
 # SWOT Analysis Tool
 
-An AI-powered SWOT (Strengths, Weaknesses, Opportunities, and Threats) analysis tool built on Replit, designed to streamline strategic planning for businesses and individuals.
+A comprehensive, AI-powered SWOT (Strengths, Weaknesses, Opportunities, and Threats) analysis platform designed for modern business strategy development and execution.
 
-## Features
+## Overview
 
-- AI-powered SWOT suggestions
-- Multi-device support with responsive web interface
-- RESTful API for programmatic access
-- MongoDB integration for data persistence
-- Real-time collaborative analysis
+This tool leverages artificial intelligence to provide data-driven insights for strategic planning, helping businesses and individuals make informed decisions through structured SWOT analysis.
 
-## Quick Start
+## Key Features
 
-1. Fork this Repl to your account
-2. Click the Run button
-3. Access the web interface through the provided URL
+- **AI-Powered Analysis**: Intelligent suggestions for each SWOT category
+- **Real-time Collaboration**: Simultaneous multi-user analysis capabilities
+- **RESTful API**: Programmatic access for system integration
+- **Data Persistence**: MongoDB-backed storage for reliable data management
+- **Responsive Design**: Seamless experience across all devices
 
-## Setup
+## Technical Requirements
 
-The project automatically installs dependencies on first run. Required packages are listed in `requirements.txt`.
+- Python 3.8+
+- MongoDB
+- Internet connection for AI features
 
-Make sure MongoDB is running:
+## Getting Started
+
+1. Fork this Repl
+2. Click Run to start the application
+3. Access the application via the provided Replit URL
+
+## Configuration
+
+The application automatically handles dependency installation through `requirements.txt`. To initialize the database:
+
 ```bash
 mongod &
 ```
 
-## Usage
+## API Documentation
 
-### Web Interface
-Access the web application through your Replit URL to:
-- Create new SWOT analyses
-- View existing analyses
-- Get AI-powered suggestions
-- Collaborate with team members
+### Core Endpoints
 
-### API Endpoints
-
-```bash
-# Create a new SWOT analysis
+```http
 POST /api/swot
+Create a new SWOT analysis
 
-# Get AI suggestions
 POST /api/swot/suggest
-{
-    "category": "opportunity",
-    "description": "expanding into new markets"
-}
+Generate AI-powered suggestions
 
-# Get all SWOT entries
 GET /api/swot
+Retrieve all SWOT entries
 ```
 
-### AI Integration
+### Example API Usage
 
 ```python
 from swot_ai_helper import SWOTAIHelper
@@ -61,13 +59,27 @@ ai_helper = SWOTAIHelper()
 suggestions = ai_helper.suggest_swot("opportunity", "market expansion")
 ```
 
-## Contributing
+## Development
 
-1. Fork this Repl
-2. Make your changes
-3. Test thoroughly
-4. Create a pull request
+### Testing
+Run the test suite:
+```bash
+python -m unittest discover tests
+```
+
+### Contributing Guidelines
+
+1. Fork the Repl
+2. Implement changes
+3. Add tests for new features
+4. Submit a pull request
+
+## Security
+
+- All API endpoints implement authentication
+- Data encryption in transit and at rest
+- Regular security updates
 
 ## License
 
-MIT License - See LICENSE file for details
+Released under the MIT License. See LICENSE file for details.
