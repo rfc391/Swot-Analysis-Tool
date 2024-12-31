@@ -5,7 +5,7 @@ from swot_ai_helper import SWOTAIHelper
 import datetime
 
 app = Flask(__name__)
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb://0.0.0.0:27017/")
 db = client['swot_analysis_db']
 collection = db['swot_entries']
 
