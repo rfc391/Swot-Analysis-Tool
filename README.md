@@ -9,76 +9,73 @@ This tool leverages artificial intelligence to provide data-driven insights for 
 
 ## Key Features
 
-- **AI-Powered Analysis**: Intelligent suggestions for each SWOT category
-- **Real-time Collaboration**: Simultaneous multi-user analysis capabilities
-- **RESTful API**: Programmatic access for system integration
-- **Data Persistence**: MongoDB-backed storage for reliable data management
-- **Responsive Design**: Seamless experience across all devices
+- **AI-Powered Analysis**: Intelligent suggestions for each SWOT category.
+- **Real-time Collaboration**: Simultaneous multi-user analysis capabilities.
+- **RESTful API**: Programmatic access for system integration.
+- **Data Persistence**: MongoDB-backed storage for reliable data management.
+- **Responsive Design**: Seamless experience across all devices.
 
-## Technical Requirements
+## Quick Start
 
-- Python 3.8+
-- MongoDB
-- Internet connection for AI features
+1. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+2. Start MongoDB:
+    ```bash
+    mongod &
+    ```
+3. Run the application:
+    ```bash
+    python main.py
+    ```
 
-## Getting Started
+## AI-Powered Suggestions
 
-1. Fork this Repl
-2. Click Run to start the application
-3. Access the application via the provided Replit URL
-
-## Configuration
-
-The application automatically handles dependency installation through `requirements.txt`. To initialize the database:
-
-```bash
-mongod &
-```
-
-## API Documentation
-
-### Core Endpoints
-
-```http
-POST /api/swot
-Create a new SWOT analysis
-
-POST /api/swot/suggest
-Generate AI-powered suggestions
-
-GET /api/swot
-Retrieve all SWOT entries
-```
-
-### Example API Usage
-
+The enhanced AI module provides insightful suggestions:
 ```python
 from swot_ai_helper import SWOTAIHelper
 
 ai_helper = SWOTAIHelper()
-suggestions = ai_helper.suggest_swot("opportunity", "market expansion")
+suggestion = ai_helper.suggest_swot("opportunity", "expanding into global markets")
+print(suggestion)
 ```
 
-## Development
+**Output:**
+```
+Opportunity insight: Based on expanding into global markets, consider focusing on potential.
+```
 
-### Testing
+## API Endpoints
+
+### Create SWOT Analysis
+- **POST /api/swot**
+- **Body:**
+  ```json
+  {
+    "strengths": "string",
+    "weaknesses": "string",
+    "opportunities": "string",
+    "threats": "string"
+  }
+  ```
+
+### Get Suggestions
+- **POST /api/swot/suggest**
+- **Body:**
+  ```json
+  {
+    "category": "strength",
+    "description": "string"
+  }
+  ```
+
+## Testing
+
 Run the test suite:
 ```bash
 python -m unittest discover tests
 ```
-
-### Contributing Guidelines
-
-1. Fork the Repl
-2. Implement changes
-3. Add tests for new features
-4. Submit a pull request
-
-## Security
-
-- All API endpoints implement authentication
-- Data encryption in transit and at rest
-- Regular security updates
 
 ## License
 
