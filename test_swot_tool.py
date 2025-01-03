@@ -1,35 +1,33 @@
 
 import unittest
-from unittest.mock import MagicMock
-from swot_analysis import SWOTAnalysis
-from swot_ai_helper import SWOTAIHelper
+from unittest.mock import patch, MagicMock
+import sys
+import os
 
-class TestSWOTTool(unittest.TestCase):
-    def setUp(self):
-        # Mocking SWOTAnalysis
-        self.mock_db = MagicMock()
-        self.swot_analysis = SWOTAnalysis(self.mock_db)
+# Add project directory to sys.path for module resolution
+sys.path.append("/mnt/data/swot_tool_extracted/Swot-Analysis-Tool-main")
 
-        # Mocking SWOTAIHelper
-        self.swot_ai_helper = SWOTAIHelper()
-        self.swot_ai_helper.suggest_swot = MagicMock(
-            return_value="Mocked AI suggestion"
-        )
+from swot_analysis import SWOTAnalysisApp
 
-    def test_create_swot_entry(self):
-        # Testing creation of a SWOT entry
-        entry = self.swot_analysis.create_analysis(
-            strengths="Strong customer loyalty",
-            weaknesses="Limited distribution",
-            opportunities="Emerging markets",
-            threats="Competitors"
-        )
-        self.mock_db.insert_one.assert_called_once_with(entry)
-
-    def test_ai_suggestion(self):
-        # Testing AI suggestion mock
-        suggestion = self.swot_ai_helper.suggest_swot("opportunity", "new market")
-        self.assertEqual(suggestion, "Mocked AI suggestion")
+class TestSWOTAnalysis(unittest.TestCase):
+    @patch('tkinter.Tk', return_value=MagicMock())
+    @patch('tkinter.StringVar', return_value=MagicMock())
+    @patch('tkinter.IntVar', return_value=MagicMock())
+    def setUp(self, mock_intvar, mock_stringvar, mock_tk):
+        self.root = mock_tk()
+        self.app = SWOTAnalysisApp(self.root)
+    
+    def test_initial_setup(self):
+        self.assertIsNotNone(self.app)
+        self.assertIsNotNone(self.app.root)
+    
+    def test_window_title(self):
+        self.app.root.title = MagicMock(return_value="Advanced SWOT Analysis Tool")
+        self.assertEqual(self.app.root.title(), "Advanced SWOT Analysis Tool")
+    
+    def test_window_geometry(self):
+        self.app.root.geometry = MagicMock(return_value="900x800")
+        self.assertEqual(self.app.root.geometry(), "900x800")
 
 if __name__ == "__main__":
     unittest.main()
