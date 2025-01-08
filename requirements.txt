@@ -17,3 +17,5 @@ coverage
 flake8
 isort
 pre-commit
+grpcio
+grpcio-tools
