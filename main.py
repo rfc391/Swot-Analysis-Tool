@@ -1,31 +1,83 @@
 
-import os
+from flask import Flask, jsonify, request
+from flask_cors import CORS
+from pymongo import MongoClient
+from swot_analysis import SWOTAnalysis
+from swot_ai_helper import SWOTAIHelper
 import json
+import logging
 
-# Load the updated configuration
-config_path = 'config.json'
-with open(config_path, 'r') as config_file:
-    config = json.load(config_file)
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
-# Example usage of immudb and InfluxDB configurations
-def connect_to_immudb():
-    immudb_url = config['databases']['immudb']['url']
-    print(f"Connecting to immudb at {immudb_url}")
-    # Add logic for immudb integration here
+app = Flask(__name__)
+CORS(app)
 
-def connect_to_influxdb():
-    influxdb_id = config['databases']['influxdb']['database_id']
-    print(f"Connecting to InfluxDB with Database ID: {influxdb_id}")
-    # Add logic for InfluxDB integration here
+def init_app():
+    # Load configuration
+    try:
+        with open('config.json') as config_file:
+            config = json.load(config_file)
+    except Exception as e:
+        logging.error(f"Failed to load config: {e}")
+        raise
 
-# Integrate OpenCV AI for automated tasks
-def run_opencv_ai():
-    if config['automation']['opencv_ai']:
-        print("Running OpenCV AI automation")
-        # Add logic for OpenCV AI tasks here
+    # Setup MongoDB connection
+    try:
+        client = MongoClient(config['database_url'])
+        db = client.swot_database
+        return SWOTAnalysis(db), SWOTAIHelper()
+    except Exception as e:
+        logging.error(f"Failed to connect to database: {e}")
+        raise
+
+swot_handler, ai_helper = init_app()
+
+@app.route('/api/swot', methods=['POST'])
+def create_swot():
+    try:
+        data = request.get_json()
+        analysis_id = swot_handler.create_analysis(
+            data.get('strengths', []),
+            data.get('weaknesses', []),
+            data.get('opportunities', []),
+            data.get('threats', [])
+        )
+        return jsonify({"id": str(analysis_id)}), 201
+    except Exception as e:
+        logging.error(f"Error creating SWOT analysis: {e}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/swot/<analysis_id>', methods=['GET'])
+def get_swot(analysis_id):
+    try:
+        analysis = swot_handler.get_analysis(analysis_id)
+        if analysis:
+            analysis['_id'] = str(analysis['_id'])
+            return jsonify(analysis)
+        return jsonify({"error": "Not found"}), 404
+    except Exception as e:
+        logging.error(f"Error retrieving SWOT analysis: {e}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/swot/suggest', methods=['POST'])
+def get_suggestions():
+    try:
+        data = request.get_json()
+        if not data.get('category') or not data.get('description'):
+            return jsonify({"error": "Category and description are required"}), 400
+            
+        suggestions = ai_helper.suggest_swot(
+            data['category'],
+            data['description']
+        )
+        return jsonify({"suggestions": suggestions})
+    except Exception as e:
+        logging.error(f"Error getting suggestions: {e}")
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    print("Starting system with updated configuration...")
-    connect_to_immudb()
-    connect_to_influxdb()
-    run_opencv_ai()
+    app.run(host='0.0.0.0', port=5000)

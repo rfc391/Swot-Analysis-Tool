@@ -1,24 +1,4 @@
 {
     "database_url": "mongodb://localhost:27017",
-    "api_base_url": "http://localhost:5000/api/swot",
-    "cloudflare": {
-        "api_key": "SqnVMNvjSXpDN9YCR_vf-cqlnsKjZAcJ4SrfEi5u",
-        "r2_storage_url": "https://2bf985f6bc3412ca90de78c00002ecaf.r2.cloudflarestorage.com/immudb",
-        "d1_database_id": "a5a53e0b-af35-4f87-89ac-7069f635e54b"
-    },
-    "databases": {
-        "immudb": {
-            "storage_type": "Cloudflare R2",
-            "url": "https://2bf985f6bc3412ca90de78c00002ecaf.r2.cloudflarestorage.com/immudb"
-        },
-        "influxdb": {
-            "storage_type": "Cloudflare D1 SQL",
-            "database_id": "a5a53e0b-af35-4f87-89ac-7069f635e54b"
-        }
-    },
-    "automation": {
-        "opencv_ai": true,
-        "grpc": true,
-        "protobuf": true
-    }
+    "api_base_url": "http://localhost:5000/api/swot"
 }
