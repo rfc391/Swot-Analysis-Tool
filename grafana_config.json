@@ -1,0 +1,32 @@
+
+{
+  "dashboard": {
+    "id": null,
+    "title": "SWOT Analysis Monitoring",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "Data Points",
+        "targets": [
+          {
+            "measurement": "test",
+            "fields": ["value"],
+            "tags": [],
+            "type": "timeseries",
+            "datasource": "InfluxDB"
+          }
+        ]
+      },
+      {
+        "type": "stat",
+        "title": "Cached Keys",
+        "targets": [
+          {
+            "query": "SELECT COUNT(*) FROM redis_cache",
+            "datasource": "PostgreSQL"
+          }
+        ]
+      }
+    ]
+  }
+}

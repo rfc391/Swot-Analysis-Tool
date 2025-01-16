@@ -19,3 +19,10 @@ isort
 pre-commit
 grpcio
 grpcio-tools
+
+kafka-python
+pika
+redis
+
+transformers
+bson
