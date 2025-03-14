@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Real-Time Data Dashboard</h1>
+    <canvas id="realtimeChart" width="800" height="400"></canvas>
+
+    <script>
+        const ctx = document.getElementById('realtimeChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [], // Placeholder for dynamic labels
+                datasets: [{
+                    label: 'Live Data',
+                    data: [], // Placeholder for dynamic data
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        function updateChart() {
+            const now = new Date();
+            chart.data.labels.push(now.toLocaleTimeString());
+            chart.data.datasets[0].data.push(Math.random() * 100); // Simulate data
+
+            if (chart.data.labels.length > 20) {
+                chart.data.labels.shift();
+                chart.data.datasets[0].data.shift();
+            }
+
+            chart.update();
+        }
+
+        setInterval(updateChart, 1000); // Update every second
+    </script>
+</body>
+</html>
