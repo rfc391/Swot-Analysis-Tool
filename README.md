@@ -1,71 +1,87 @@
-
 # SWOT Analysis Tool
 
-## Overview
-The SWOT Analysis Tool is a robust framework for conducting comprehensive Strengths, Weaknesses, Opportunities, and Threats analysis, enhanced with cutting-edge technologies. This project integrates advanced data processing, real-time analytics, and AI-driven insights for strategic decision-making.
-
-## Key Features
-- **Event-Driven Architecture**: Powered by Kafka and RabbitMQ for reliable and scalable event streaming.
-- **AI Engine**: Includes OpenCV, ONNX, and NVIDIA Triton for advanced data analysis and image processing.
-- **Secure Communication**: Utilizes gRPC with Protobuf for low-latency communication and Quiche/HTTP3 for secure data transport.
-- **Databases**:
-  - Time-Series: InfluxDB.
-  - Transactional: Cloudflare D1/PostgreSQL.
-  - Immutable Storage: immudb with IPFS for archival.
-- **Zero Trust Security**: Enforced via Cloudflare Zero Trust.
-- **Quantum-Safe Encryption**: Combines QKD and PQC for future-proof encryption.
-- **Performance Optimization**: Cloudflare Workers for edge compute and Redis caching for fast data access.
-- **Decentralized Storage**: IPFS Cluster for distributed archival.
-
-## System Architecture
-![Architecture Diagram Placeholder](assets/architecture_diagram.png)
-
-## Getting Started
-
-### Prerequisites
-- Docker
-- Python 3.8+
-- Node.js (Optional for frontend development)
-- IPFS Daemon (for decentralized storage)
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/rfc391/Swot-Analysis-Tool.git
-   cd Swot-Analysis-Tool
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Run the application:
-   ```bash
-   python main.py
-   ```
-
-### Docker Setup
-1. Build and run the Docker container:
-   ```bash
-   docker build -t swot-analysis-tool .
-   docker run -p 8080:8080 swot-analysis-tool
-   ```
-
-## Documentation
-- [User Guide](docs/User_Guide.md)
-- [Developer Documentation](docs/Developer_Documentation.md)
-- [Testing Guide](docs/Testing_Guide.md)
-
-## Contribution
-We welcome contributions! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.
-
-## License
-This project is licensed under the [MIT License](LICENSE).
-
-## Support
-For questions or support, open an issue or contact the maintainer.
+A cross-platform, AI-enhanced tool for performing advanced SWOT (Strengths, Weaknesses, Opportunities, Threats) analysis with real-time data, secure transmission, and quantum-safe encryption.
 
 ---
 
-**Designed for strategic excellence with a future-proof tech stack.**
+## 🚀 Features
+
+- 🎯 **AI-Powered Analysis** (OpenCV, ONNX)
+- 🔐 **Zero Trust Security** (Cloudflare, gRPC, HTTP/3)
+- 🕵️ **Surveillance-Grade Image & Signal Processing**
+- 📊 **Live Metrics Dashboards** (Grafana, InfluxDB)
+- 📁 **Immutable Data Storage** (immudb + IPFS)
+- 🔄 **Multi-protocol Messaging** (Kafka + RabbitMQ)
+- 🧠 **Quantum-Resistant Encryption** (QKD + PQC)
+- ⚙️ **Event-driven architecture**
+- ☁️ **Cloud and Field Deployable**
+- 📦 **Portable + Installer-ready** (.deb, .exe, .AppImage)
+
+---
+
+## 📦 Install
+
+### Linux (Debian/Ubuntu)
+```bash
+sudo dpkg -i swot-analysis-tool_1.0.0.deb
+```
+
+### Windows
+Download and run:  
+**[SWOTAnalysisTool.exe](https://github.com/rfc391/Swot-Analysis-Tool/releases)**
+
+### Portable Linux (.AppImage)
+```bash
+chmod +x SWOTAnalysisTool.AppImage
+./SWOTAnalysisTool.AppImage
+```
+
+---
+
+## 🧠 Architecture
+
+![System Diagram](assets/architecture_diagram.png)
+
+---
+
+## 💻 Developer Quick Start
+
+```bash
+git clone https://github.com/rfc391/Swot-Analysis-Tool.git
+cd Swot-Analysis-Tool
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python src/main.py
+```
+
+---
+
+## 🤖 Run Tests
+
+```bash
+pytest tests/
+```
+
+---
+
+## 🛠 Build Locally
+
+```bash
+bash scripts/build_deb.sh
+bash scripts/build_exe.sh
+bash scripts/build_appimage.sh
+```
+
+---
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get involved.  
+Security guidelines are in [SECURITY.md](SECURITY.md)
+
+---
+
+## 📜 License
+
+[MIT License](LICENSE)

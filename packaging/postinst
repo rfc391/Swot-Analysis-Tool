@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Installing Python dependencies..."
+pip3 install -r /opt/swot-analysis-tool/requirements.txt
+echo "Installation complete."

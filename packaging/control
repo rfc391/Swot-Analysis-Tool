@@ -1,0 +1,8 @@
+Package: swot-analysis-tool
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Depends: python3, python3-pip
+Maintainer: rfc391 <robshubert96@gmail.com>
+Description: Cross-platform SWOT Analysis Tool with AI, IPFS, and Zero Trust integration.

@@ -1,0 +1,15 @@
+version: 1.0.0
+script:
+  - pip3 install -r requirements.txt
+AppDir:
+  path: ./AppDir
+  app_info:
+    id: swot.analysis.tool
+    name: SWOTAnalysisTool
+    icon: icon
+    exec: python3
+    args: main.py
+  runtime:
+    env:
+      PYTHONHOME: /usr
+      PYTHONPATH: .
